@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="Style/publicar.css">
+  <!-- Compiled_and_minified_CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="icon" href="image/Logo.png" alt="logo">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  <title>EasyPark</title>
+</head>
+
+<body>
+  <section>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg sticky-top py-3 shadow-sm" style="background-color: rgb(39, 150, 248) ;">
+      <div class="container">
+        <a href="index.html" class="navbar-brand">
+          <!-- Logo Image -->
+          <img href="#" src="image/Logo.png" alt="logo" width="100" height="50" alt=""
+            class="d-inline-block align-middle mr-2">
+        </a>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+          <i class="fa fa-bars"></i>
+        </label>
+        <ul>
+          <li><a class="activar" href="index.html">Inicio</a></li>
+          <li><a href="login.html">Ingresar</a></li>
+          <li><a href="registro.html">Registrarse </a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="position-absolute top-50 start-50 translate-middle">
+      <center>
+        <h3 class="indigo-text">Registrar Parqueadero</h3>
+        <br></br>
+      </center>
+      <div class="container-fluid">
+        <div class="row">
+
+          <form class="col s12">
+            <!--ingresar_nombre_park-->
+            <div class="row">
+              <div class="input-field col s6">
+                <input id="Nombre_park" type="text" class="validate">
+                <label for="Nombre_park">Ingrese el nombre del parqueadero</label>
+              </div>
+            </div>
+            <!--ingresar_direccion-->
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="direccion" type="text" class="validate">
+                <label for="direccion">Ingrese la dirección</label>
+              </div>
+            </div>
+            <!--ingresar_precio_hora-->
+            <div class="row">
+              <div class="input-field col s6">
+                <input id="precio_h" type="number" class="validate">
+                <label for="precio_h">Precio por Hora</label>
+              </div>
+              <!--ingresa_precio_día-->
+              <div class="input-field col s6">
+                <input id="precio_d" type="number" class="validate">
+                <label for="precio_d">Precio por Día</label>
+              </div>
+              <!--ingresa_precio_mes-->
+              <div class="input-field col s6">
+                <input id="precio_m" type="number" class="validate">
+                <label for="precio_m">Precio por Mes</label>
+              </div>
+            </div>
+            <!--tipo_veh-->
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Tipo de Vehículo aceptado</label>
+              <select class="form-control" id="exampleFormControlSelect1">
+                <option>Carro</option>
+                <option>Moto</option>
+                <option>Carro y Moto</option>
+              </select>
+            </div>
+            <br></br>
+            <!--Cargar_fotos-->
+            <div class="row">
+              <div>
+                <label class="s12" for="myfile">Cargar Fotos</label>
+                <input type="file" id="myfile" name="myfile">
+              </div>
+            </div>
+            <form>
+              <div class="form-row align-items-center">
+              </div>
+            </form>
+            <div>
+              <!--boton_registro-->
+              <div id="boton_reg">
+                <div class='row'>
+                  <button type='submit' name='btn_login'
+                    class='col s12 btn-info btn-large waves-effect indigo text-white'>Publicar Parqueadero</button>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+      <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    </div>
+  </section>
+</body>
+
+</html>
