@@ -3,6 +3,7 @@ from multiprocessing import context
 from re import template
 from django.http import HttpResponse
 from django.template import Template,Context
+from EasyPark_Pyton.models import Persona
 from django.db import connection
 from django.shortcuts import render,redirect
 from django.contrib import messages
@@ -19,6 +20,59 @@ def login(request):
 def publicar(request):
     return render(request,'publicar.html')
 
-def registro(request):
-    return render(request,'registro.html')
+#region persona 
+def registrousuario(request):
+    if request.method=="POST":
+        if request.POST.get('nombres') and request.POST.get('apellidos') and request.POST.get('cedula') and request.POST.get('email') and request.POST.get('tel_usuario') and request.POST.get('nombre_usuario') and request.POST.get('contraseña') and request.POST.get('id_rol'):
+            persona= Persona()
+            persona.nombres= request.POST.get('nombres') 
+            persona.apellidos= request.POST.get('apellidos')
+            persona.cedula= request.POST.get('cedula')  
+            persona.email= request.POST.get('email') 
+            persona.tel_usuario= request.POST.get('tel_usuario') 
+            persona.nombre_usuario= request.POST.get('nombre_usuario') 
+            persona.contraseña= request.POST.get('contraseña') 
+            persona.id_rol= request.POST.get('id_rol') 
+            insertar=connection.cursor()
+            insertar.execute("call insertarusuario('"+persona.nombres+"','"+persona.apellidos+"','"+persona.cedula+"','"+persona.email+"','"+persona.tel_usuario+"','"+persona.nombre_usuario+"','"+persona.contraseña+"','"+persona.id_rol+"')")
+            messages.success(request, "El usuario: " +persona.nombres+persona.apellidos+ " se guardó con exito")
+            return render(request,'registro.html')
+    else:
+        return render(request,'registro.html')
+#El el archivo base lo deje asi para redireccionar al htmldel listado de usuarios 
+def Listadopersonas(request):
+    archivobase = open("EasyPark_Pyton/Template/.....")
+    lectura = Template(archivobase.read()) 
+    archivobase.close()
+    persona=Persona.objects.all()
+    parametros = Context({'persona':persona})
+    paginaresultado = lectura.render(parametros)
+    return HttpResponse(paginaresultado)
+
+#Aqui esta redireccionado a usuario ya que me imagino que va aser el listado de usuarios registrados con su rol
+def Borrarpersona(request,id):
+    persona=Persona.objects.get(id=id)
+    persona.delete()
+    return redirect("/Usuarios/listado/")
+
+def Actualizarpersona(request,id):
+    if request.method=="POST":
+        if request.POST.get('nombres') and request.POST.get('apellidos') and request.POST.get('cedula') and request.POST.get('email') and request.POST.get('tel_usuario') and request.POST.get('nombre_usuario') and request.POST.get('contraseña') and request.POST.get('id_rol'):
+            persona= Persona()
+            persona.nombres= request.POST.get('nombres') 
+            persona.apellidos= request.POST.get('apellidos')
+            persona.cedula= request.POST.get('cedula')  
+            persona.email= request.POST.get('email') 
+            persona.tel_usuario= request.POST.get('tel_usuario') 
+            persona.nombre_usuario= request.POST.get('nombre_usuario') 
+            persona.contraseña= request.POST.get('contraseña') 
+            persona.id_rol= request.POST.get('id_rol')
+            actualizar=connection.cursor()
+            id=str(id)
+            actualizar.execute("call actualizausuario('"+persona.nombres+"','"+persona.apellidos+"','"+persona.cedula+"','"+persona.email+"','"+persona.tel_usuario+"','"+persona.nombre_usuario+"','"+persona.contraseña+"','"+persona.id_rol+"')")
+            return redirect('/Usuarios/listado/')
+    else:
+        unsolousuario=Persona.objects.filter(id=id)
+        return render(request,'Usuarios/actualizar.html',{'unsolousuario':unsolousuario})
+    #endregion
 

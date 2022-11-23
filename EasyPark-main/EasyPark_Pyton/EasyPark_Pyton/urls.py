@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from EasyPark_Pyton.views import inicio,buscar,login,publicar,registro
+from EasyPark_Pyton.views import inicio,buscar,login,publicar
+from EasyPark_Pyton.views import registropersona,Actualizarpersona,Listadopersonas,Borrarpersona
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,6 +24,8 @@ urlpatterns = [
     path('buscar.html/', buscar, name='buscar'),
     path('login.html/', login,name='login'),
     path('publicar.html/', publicar,name='publicar'),
-    path('registro.html/', registro,name='registro'),
+    
+    
+    path('registro.html/', registropersona, name='registropersona'),
 
 ]
